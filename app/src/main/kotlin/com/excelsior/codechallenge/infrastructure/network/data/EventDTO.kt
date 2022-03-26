@@ -1,10 +1,12 @@
 package com.excelsior.codechallenge.infrastructure.network.data
 
+import org.joda.time.DateTime
+
 data class EventDTO(
     val guid: String,
     val event: String,
     val ticketPrice: Double,
-    val date: String
+    val date: DateTime
 ) {
     companion object {
         const val TICKET_PRICE_FIELD = "ticketPrice"

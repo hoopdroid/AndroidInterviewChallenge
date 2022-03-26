@@ -36,7 +36,8 @@ class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewM
                     eventRepository.getEvents(FilterOptions(sortType = currentSortType))
                 eventsLiveData.postValue(
                     EventsOverviewState.EventsLoaded(
-                        events,
+                        events.eventTimeRange,
+                        events.eventsList,
                         currentSortType
                     )
                 )

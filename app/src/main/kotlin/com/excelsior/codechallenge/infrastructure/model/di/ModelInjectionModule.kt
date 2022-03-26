@@ -5,6 +5,7 @@ import com.excelsior.codechallenge.infrastructure.model.repository.EventListRepo
 import com.excelsior.codechallenge.infrastructure.model.repository.EventRepository
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiRemoteGateway
+import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 import org.koin.dsl.module
 
 object ModelInjectionModule {

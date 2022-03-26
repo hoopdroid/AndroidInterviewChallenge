@@ -6,5 +6,4 @@ data class EventVO(
     val name: String,
     val price: Double,
     val formattedDate: String,
-    val date: String,
 )

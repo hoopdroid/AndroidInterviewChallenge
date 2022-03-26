@@ -41,14 +41,6 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
             adapter = eventsAdapter
         }
 
-        binding.apply {
-            title.text = String.format(
-                requireContext().getString(R.string.events_overview_title),
-                "'fromDate'",
-                "'untilDate'"
-            )
-        }
-
         binding.toolbar.inflateMenu(R.menu.toolbar_menu)
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -76,6 +68,14 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
                     // todo error text
                 }
                 is EventsOverviewState.EventsLoaded -> {
+                    binding.apply {
+                        title.text = String.format(
+                            requireContext().getString(R.string.events_overview_title),
+                            state.eventsTimeRange.fromDate,
+                            state.eventsTimeRange.untilDate
+                        )
+                    }
+
                     binding.progress.gone()
                     binding.eventList.show()
                     eventsAdapter?.setItems(state.eventsList)

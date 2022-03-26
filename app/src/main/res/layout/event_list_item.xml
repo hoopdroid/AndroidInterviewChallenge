@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/size2x"
             android:layout_marginVertical="@dimen/size1x"
-            android:text="@{String.valueOf(event.date)}"
+            android:text="@{event.formattedDate}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name"

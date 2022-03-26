@@ -52,6 +52,10 @@ dependencies {
     // https://mvnrepository.com/artifact/com.google.android.material/material
     implementation "com.google.android.material:material:1.4.0"
 
+    implementation "joda-time:joda-time:2.10.14"
+    implementation("com.squareup.moshi:moshi-kotlin:1.13.0")
+    implementation "com.squareup.retrofit2:converter-moshi:2.3.0"
+
     // https://mvnrepository.com/artifact/androidx.constraintlayout/constraintlayout
     implementation "androidx.constraintlayout:constraintlayout:2.1.1"
 

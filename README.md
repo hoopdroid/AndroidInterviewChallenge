@@ -30,8 +30,8 @@ Documentation for API's could be found in Postman collection under the folder 'd
 # TODO:
 ### Business logic tasks:
 [ ] implement ASYNCHRONOUS backend communication instead of MOCK samples (see Postman collection for reference and infrastructure/network project package)
-[ ] fix date formatting on overview page to the following format: "05 August 2021"
-[ ] add correct date for "fromDate" and "untilDate" for events overview page title
+[X] fix date formatting on overview page to the following format: "05 August 2021"
+[X] add correct date for "fromDate" and "untilDate" for events overview page title
 [ ] implement sorting by date and by price for overview screen
 [ ] implement event details screen
 
