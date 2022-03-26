@@ -1,0 +1,9 @@
+# Android Studio
+# IntelliJ
+*.iml
+.idea/*
+!.idea/codeStyles/*
+!.idea/vcs.xml
+
+.gradle
+build/
