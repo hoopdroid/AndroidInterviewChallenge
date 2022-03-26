@@ -6,12 +6,9 @@ data class EventDTO(
     val guid: String,
     val event: String,
     val ticketPrice: Double,
-    val date: DateTime
-) {
-    companion object {
-        const val TICKET_PRICE_FIELD = "ticketPrice"
-        const val DATE_FIELD = "date"
-    }
-
-}
+    val date: DateTime,
+    val description: String? = null,
+    val phone: String? = null,
+    val address: String? = null
+)
 

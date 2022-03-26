@@ -6,7 +6,6 @@ import com.excelsior.codechallenge.infrastructure.network.data.EventDTO
 class ApiRemoteGateway(private val service: ApiService) :
     ApiGateway {
 
-    override suspend fun getEvents(): List<EventDTO> {
-        return service.get().getEvents()
-    }
+    override suspend fun getEvents(): List<EventDTO> = service.get().getEvents()
+    override suspend fun getEvent(id: String): EventDTO = service.get().getEvent(id)
 }

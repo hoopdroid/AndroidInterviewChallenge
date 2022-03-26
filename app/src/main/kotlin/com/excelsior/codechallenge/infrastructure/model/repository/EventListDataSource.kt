@@ -23,6 +23,10 @@ class EventListDataSource(
         )
     }
 
+    override suspend fun getEvent(id: String): EventDTO {
+        return apiGateway.getEvent(id)
+    }
+
     private fun List<EventDTO>.applyFilter(filterOptions: FilterOptions): List<EventDTO> {
         return when (filterOptions.sortType) {
             SortType.Ascending -> sortedByOptions(filterOptions)
