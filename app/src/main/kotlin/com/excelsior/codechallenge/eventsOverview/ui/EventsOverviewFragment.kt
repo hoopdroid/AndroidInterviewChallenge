@@ -53,6 +53,7 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
             }
 
         }
+        binding.swipeRefreshContainer.setOnRefreshListener { viewModel.fetchEvents() }
     }
 
     private fun observeScreenState() {
@@ -61,7 +62,7 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
             when (state) {
                 is EventsOverviewState.Error -> {
                     binding.eventList.gone()
-                    binding.progress.gone()
+                    binding.swipeRefreshContainer.isRefreshing = false
                     binding.title.text = requireContext().getString(R.string.event_list_error)
                 }
                 is EventsOverviewState.EventsLoaded -> {
@@ -70,14 +71,14 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
                             state.eventsTimeRange.fromDate,
                             state.eventsTimeRange.untilDate
                         )
-                    binding.progress.gone()
+                    binding.swipeRefreshContainer.isRefreshing = false
                     binding.eventList.show()
                     eventsAdapter?.setItems(state.eventsList)
                     renderToolbar(state.filterOptions)
                 }
                 is EventsOverviewState.Loading -> {
                     binding.eventList.gone()
-                    binding.progress.show()
+                    binding.swipeRefreshContainer.isRefreshing = true
                 }
             }
         }
