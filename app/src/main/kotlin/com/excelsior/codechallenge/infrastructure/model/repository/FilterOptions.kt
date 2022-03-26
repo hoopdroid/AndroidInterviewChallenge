@@ -1,16 +1,17 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
 data class FilterOptions(
-    val sortType: SortType? = SortType.Ascending(SortType.Type.ticket_price),
+    val fieldType: FieldType = FieldType.PRICE,
+    val sortType: SortType = SortType.Ascending,
     val needToShowOutDated: Boolean? = true
 )
 
 sealed class SortType {
-    data class Ascending(val byField: Type) : SortType()
-    data class Descending(val byField: Type) : SortType()
+    object Ascending : SortType()
+    object Descending : SortType()
+}
 
-    enum class Type {
-        date,
-        ticket_price,
-    }
+sealed class FieldType(val type: String) {
+    object DATE: FieldType("date")
+    object PRICE: FieldType("ticket_price")
 }

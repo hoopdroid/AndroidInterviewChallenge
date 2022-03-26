@@ -1,5 +1,5 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
-interface EventRepository {
+interface EventDataSource {
     suspend fun getEvents(filterOptions: FilterOptions): EventData
 }

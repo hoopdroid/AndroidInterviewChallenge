@@ -1,8 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.network.gateway
 
-import com.excelsior.codechallenge.eventsOverview.ui.EventVO
+import com.excelsior.codechallenge.infrastructure.network.data.EventDTO
 
 interface ApiGateway {
 
-    suspend fun getEvents(): List<EventVO>
+    suspend fun getEvents(): List<EventDTO>
 }

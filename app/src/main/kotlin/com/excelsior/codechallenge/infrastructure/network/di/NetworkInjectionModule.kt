@@ -14,7 +14,7 @@ object NetworkInjectionModule {
         }
 
         single<ApiGateway> {
-            ApiRemoteGateway(get(), get())
+            ApiRemoteGateway(get())
         }
     }
 }

@@ -10,4 +10,5 @@
     <string name="event_email_title">Contact email:</string>
     <string name="event_phone_title">Contact phone:</string>
     <string name="event_address_title">Address:</string>
+    <string name="event_list_error">Fetching error:</string>
 </resources>

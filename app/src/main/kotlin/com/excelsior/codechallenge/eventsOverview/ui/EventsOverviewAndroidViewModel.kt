@@ -5,40 +5,36 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
-import com.excelsior.codechallenge.infrastructure.model.repository.EventRepository
+import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
 import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
 import com.excelsior.codechallenge.infrastructure.model.repository.SortType
+import com.excelsior.codechallenge.infrastructure.model.repository.FieldType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 
 class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewModel() {
-    private val eventRepository: EventRepository by inject()
+    private val eventDataSource: EventDataSource by inject()
     private val eventsLiveData = MutableLiveData<EventsOverviewState>()
-
-    private var byFieldSort = SortType.Type.ticket_price
-    private var currentSortType: SortType = SortType.Ascending(byFieldSort)
+    private var filterOptions = FilterOptions(fieldType = FieldType.PRICE, sortType = SortType.Descending)
 
     init {
         fetchEvents(EventsInputType.FIELD)
     }
 
     override fun fetchEvents(inputType: EventsInputType?) {
-        when (inputType) {
-            EventsInputType.SORT -> switchSortType()
-            EventsInputType.FIELD -> updateByField()
-        }
+        updateFilterOptions(inputType)
 
         eventsLiveData.postValue(EventsOverviewState.Loading)
         viewModelScope.launch {
             try {
                 val events =
-                    eventRepository.getEvents(FilterOptions(sortType = currentSortType))
+                    eventDataSource.getEvents(filterOptions)
                 eventsLiveData.postValue(
                     EventsOverviewState.EventsLoaded(
                         events.eventTimeRange,
                         events.eventsList,
-                        currentSortType
+                        filterOptions
                     )
                 )
             } catch (e: Exception) {
@@ -47,29 +43,40 @@ class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewM
         }
     }
 
+    private fun updateFilterOptions(inputType: EventsInputType?) {
+        when (inputType) {
+            EventsInputType.SORT -> {
+                filterOptions = filterOptions.copy(
+                    fieldType = filterOptions.fieldType,
+                    sortType = switchSortType(filterOptions.sortType)
+                )
+            }
+            EventsInputType.FIELD -> {
+                filterOptions = filterOptions.copy(
+                    fieldType = switchFieldType(filterOptions.fieldType),
+                    sortType = filterOptions.sortType
+                )
+            }
+        }
+    }
+
     override fun observeEvents(): LiveData<EventsOverviewState> {
         return eventsLiveData
     }
 
-    private fun updateByField() {
-        byFieldSort = if (byFieldSort == SortType.Type.date) {
-            SortType.Type.ticket_price
+    private fun switchFieldType(fieldType: FieldType): FieldType {
+        return if (fieldType == FieldType.DATE) {
+            FieldType.PRICE
         } else {
-            SortType.Type.date
-        }
-
-        currentSortType = when(currentSortType) {
-            is SortType.Ascending -> SortType.Ascending(byFieldSort)
-            is SortType.Descending -> SortType.Descending(byFieldSort)
+            FieldType.DATE
         }
     }
 
-    private fun switchSortType() {
-        currentSortType = if (currentSortType == SortType.Ascending(byFieldSort)) {
-            SortType.Descending(byFieldSort)
+    private fun switchSortType(sortType: SortType): SortType {
+        return if (sortType == SortType.Ascending) {
+            SortType.Descending
         } else {
-            SortType.Ascending(byFieldSort)
+            SortType.Ascending
         }
     }
-
 }

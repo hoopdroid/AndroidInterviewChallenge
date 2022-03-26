@@ -1,13 +1,12 @@
 package com.excelsior.codechallenge.infrastructure.network.gateway
 
-import com.excelsior.codechallenge.eventsOverview.ui.EventVO
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.network.ApiService
+import com.excelsior.codechallenge.infrastructure.network.data.EventDTO
 
-class ApiRemoteGateway(private val service: ApiService, private val eventMapper: EventMapper) :
+class ApiRemoteGateway(private val service: ApiService) :
     ApiGateway {
 
-    override suspend fun getEvents(): List<EventVO> {
-        return service.get().getEvents().map { eventMapper.fromSource(it) }
+    override suspend fun getEvents(): List<EventDTO> {
+        return service.get().getEvents()
     }
 }

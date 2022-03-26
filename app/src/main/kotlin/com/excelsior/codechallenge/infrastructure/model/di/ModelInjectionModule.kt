@@ -1,11 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.model.di
 
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
-import com.excelsior.codechallenge.infrastructure.model.repository.EventListRepository
-import com.excelsior.codechallenge.infrastructure.model.repository.EventRepository
-import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
-import com.excelsior.codechallenge.infrastructure.network.gateway.ApiRemoteGateway
-import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
+import com.excelsior.codechallenge.infrastructure.model.repository.EventListDataSource
+import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
 import org.koin.dsl.module
 
 object ModelInjectionModule {
@@ -16,8 +13,8 @@ object ModelInjectionModule {
             EventMapper()
         }
 
-        single<EventRepository> {
-            EventListRepository(get())
+        single<EventDataSource> {
+            EventListDataSource(get(), get())
         }
     }
 }
