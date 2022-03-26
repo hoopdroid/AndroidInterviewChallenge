@@ -3,6 +3,7 @@ package com.excelsior.codechallenge.infrastructure.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import com.excelsior.codechallenge.R
 import com.excelsior.codechallenge.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -9,7 +9,8 @@ class EventMapper {
         EventVO(
             id = event.guid,
             name = event.event,
+            price = event.ticketPrice,
             formattedDate = event.date,
-            date = null
+            date = event.date
         )
 }

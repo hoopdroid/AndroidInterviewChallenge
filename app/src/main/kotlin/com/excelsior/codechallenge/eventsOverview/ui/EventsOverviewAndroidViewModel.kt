@@ -3,32 +3,72 @@ package com.excelsior.codechallenge.eventsOverview.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
+import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
+import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
+import com.excelsior.codechallenge.infrastructure.model.repository.EventRepository
+import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
+import com.excelsior.codechallenge.infrastructure.model.repository.SortType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.component.inject
 
-class EventsOverviewAndroidViewModel : BaseAndroidViewModel(), EventsOverviewViewModel {
-    private val service: ApiGateway by inject()
-    private val eventsLiveData = MutableLiveData<List<EventVO>>()
+class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewModel() {
+    private val eventRepository: EventRepository by inject()
+    private val eventsLiveData = MutableLiveData<EventsOverviewState>()
+
+    private var byFieldSort = SortType.Type.ticket_price
+    private var currentSortType: SortType = SortType.Ascending(byFieldSort)
 
     init {
-        fetchEvents()
+        fetchEvents(EventsInputType.FIELD)
     }
 
-    private fun fetchEvents() {
+    override fun fetchEvents(inputType: EventsInputType?) {
+        when (inputType) {
+            EventsInputType.SORT -> switchSortType()
+            EventsInputType.FIELD -> updateByField()
+        }
+
+        eventsLiveData.postValue(EventsOverviewState.Loading)
         viewModelScope.launch {
             try {
-                val events = service.getEvents()
-                eventsLiveData.postValue(events)
+                val events =
+                    eventRepository.getEvents(FilterOptions(sortType = currentSortType))
+                eventsLiveData.postValue(
+                    EventsOverviewState.EventsLoaded(
+                        events,
+                        currentSortType
+                    )
+                )
             } catch (e: Exception) {
-                eventsLiveData.postValue(emptyList())
+                eventsLiveData.postValue(EventsOverviewState.Error())
             }
         }
     }
 
-    override fun observeEvents(): LiveData<List<EventVO>> {
+    override fun observeEvents(): LiveData<EventsOverviewState> {
         return eventsLiveData
+    }
+
+    private fun updateByField() {
+        byFieldSort = if (byFieldSort == SortType.Type.date) {
+            SortType.Type.ticket_price
+        } else {
+            SortType.Type.date
+        }
+
+        currentSortType = when(currentSortType) {
+            is SortType.Ascending -> SortType.Ascending(byFieldSort)
+            is SortType.Descending -> SortType.Descending(byFieldSort)
+        }
+    }
+
+    private fun switchSortType() {
+        currentSortType = if (currentSortType == SortType.Ascending(byFieldSort)) {
+            SortType.Descending(byFieldSort)
+        } else {
+            SortType.Ascending(byFieldSort)
+        }
     }
 
 }
