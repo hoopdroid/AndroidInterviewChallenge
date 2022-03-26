@@ -1,7 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
+import com.excelsior.codechallenge.eventScreen.EventItemVO
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
-import com.excelsior.codechallenge.infrastructure.network.data.EventDTO
+import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 import org.joda.time.DateTime
@@ -23,18 +24,18 @@ class EventListDataSource(
         )
     }
 
-    override suspend fun getEvent(id: String): EventDTO {
-        return apiGateway.getEvent(id)
+    override suspend fun getEvent(id: String): EventItemVO {
+        return eventMapper.fromItem(apiGateway.getEvent(id))
     }
 
-    private fun List<EventDTO>.applyFilter(filterOptions: FilterOptions): List<EventDTO> {
+    private fun List<EventsDTO>.applyFilter(filterOptions: FilterOptions): List<EventsDTO> {
         return when (filterOptions.sortType) {
             SortType.Ascending -> sortedByOptions(filterOptions)
             SortType.Descending -> sortedByOptions(filterOptions).asReversed()
         }
     }
 
-    private fun List<EventDTO>.sortedByOptions(
+    private fun List<EventsDTO>.sortedByOptions(
         filterOptions: FilterOptions
     ) = if (filterOptions.fieldType == FieldType.PRICE) {
         sortedBy { it.ticketPrice }
@@ -42,7 +43,7 @@ class EventListDataSource(
         sortedBy { it.date }
     }
 
-    private fun resolveEventsTimeRange(eventsList: List<EventDTO>): EventTimeRange {
+    private fun resolveEventsTimeRange(eventsList: List<EventsDTO>): EventTimeRange {
         val sortedByDateEvents = eventsList.sortedBy { it.date }
 
         return try {

@@ -10,5 +10,13 @@
         android:id="@+id/eventsOverview"
         android:name="com.excelsior.codechallenge.eventsOverview.ui.EventsOverviewFragment"
         android:label="EventsOverviewFragment"
-        tools:layout="@layout/events_overview" />
+        tools:layout="@layout/events_overview" >
+        <action
+            android:id="@+id/action_eventsOverview_to_eventScreenFragment"
+            app:destination="@id/eventScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventScreenFragment"
+        android:name="com.excelsior.codechallenge.eventScreen.EventScreenFragment"
+        android:label="EventScreenFragment" />
 </navigation>
