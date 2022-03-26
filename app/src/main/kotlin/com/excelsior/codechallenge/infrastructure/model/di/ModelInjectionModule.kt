@@ -1,6 +1,6 @@
 package com.excelsior.codechallenge.infrastructure.model.di
 
-import com.excelsior.codechallenge.infrastructure.model.EventConverter
+import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import org.koin.dsl.module
 
 object ModelInjectionModule {
@@ -8,7 +8,7 @@ object ModelInjectionModule {
     val module = module {
 
         factory {
-            EventConverter()
+            EventMapper()
         }
     }
 }

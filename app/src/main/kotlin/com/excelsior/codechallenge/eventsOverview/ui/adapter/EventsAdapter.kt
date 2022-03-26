@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.excelsior.codechallenge.databinding.EventListItemBinding
 import com.excelsior.codechallenge.eventsOverview.ui.EventsOverviewViewModel
-import com.excelsior.codechallenge.infrastructure.model.Event
+import com.excelsior.codechallenge.eventsOverview.ui.EventVO
 
 class EventsAdapter(
     private val viewModel: EventsOverviewViewModel
 ) : RecyclerView.Adapter<EventViewHolder>() {
 
-    private val items = mutableListOf<Event>()
+    private val items = mutableListOf<EventVO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder =
         EventViewHolder(
@@ -30,7 +30,7 @@ class EventsAdapter(
     override fun getItemCount(): Int =
         items.size
 
-    fun setItems(newData: List<Event>) {
+    fun setItems(newData: List<EventVO>) {
         items.clear()
         items.addAll(newData)
         notifyDataSetChanged()

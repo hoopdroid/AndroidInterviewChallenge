@@ -9,7 +9,7 @@
 
         <variable
             name="event"
-            type="com.excelsior.codechallenge.infrastructure.model.Event" />
+            type="com.excelsior.codechallenge.eventsOverview.ui.EventVO" />
 
         <variable
             name="viewModel"

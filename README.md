@@ -36,7 +36,7 @@ Documentation for API's could be found in Postman collection under the folder 'd
 [ ] implement event details screen
 
 ### Code refactoring tasks:
-[ ] EventsOverviewFragment contains the mock of the events. Please refactor in order to fetch the data from backend and to make the part of code testable.
+[X] EventsOverviewFragment contains the mock of the events. Please refactor in order to fetch the data from backend and to make the part of code testable.
 [ ] Write UnitTests for sorting/filtering logic of events overview list
 
 ## Optional
