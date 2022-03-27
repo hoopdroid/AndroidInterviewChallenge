@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/root"
@@ -10,7 +9,7 @@
         android:id="@+id/eventsOverview"
         android:name="com.excelsior.codechallenge.eventsOverview.ui.EventsOverviewFragment"
         android:label="EventsOverviewFragment"
-        tools:layout="@layout/events_overview" >
+        tools:layout="@layout/events_overview">
         <action
             android:id="@+id/action_eventsOverview_to_eventScreenFragment"
             app:destination="@id/eventScreenFragment" />
@@ -18,5 +17,10 @@
     <fragment
         android:id="@+id/eventScreenFragment"
         android:name="com.excelsior.codechallenge.eventScreen.EventScreenFragment"
-        android:label="EventScreenFragment" />
+        android:label="EventScreenFragment">
+        <argument
+            android:name="id"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>

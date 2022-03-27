@@ -2,7 +2,11 @@ package com.excelsior.codechallenge.eventsOverview.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.excelsior.codechallenge.R
 import com.excelsior.codechallenge.databinding.EventsOverviewBinding
 import com.excelsior.codechallenge.eventsOverview.ui.adapter.EventsAdapter
@@ -67,10 +71,10 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
                 }
                 is EventsOverviewState.EventsLoaded -> {
                     binding.title.text = String.format(
-                            requireContext().getString(R.string.events_overview_title),
-                            state.eventsTimeRange.fromDate,
-                            state.eventsTimeRange.untilDate
-                        )
+                        requireContext().getString(R.string.events_overview_title),
+                        state.eventsTimeRange.fromDate,
+                        state.eventsTimeRange.untilDate
+                    )
                     binding.swipeRefreshContainer.isRefreshing = false
                     binding.eventList.show()
                     eventsAdapter?.setItems(state.eventsList)
@@ -83,6 +87,7 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
             }
         }
     }
+
 
     private fun renderToolbar(filterOptions: FilterOptions) {
         val filterMenuItem = binding.toolbar.menu.findItem(R.id.action_filter)

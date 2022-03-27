@@ -3,7 +3,11 @@ package com.excelsior.codechallenge.eventScreen
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.excelsior.codechallenge.R
 import com.excelsior.codechallenge.databinding.EventScreenBinding
 import com.excelsior.codechallenge.infrastructure.ui.BaseFragment
@@ -13,19 +17,17 @@ class EventScreenFragment : BaseFragment<EventsScreenViewModel, EventScreenBindi
     override val layoutId: Int = R.layout.event_screen
     override val viewModel: EventsScreenViewModel by viewModel<EventsScreenAndroidViewModel>()
 
+    private val args: EventScreenFragmentArgs by navArgs<EventScreenFragmentArgs>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initUI()
+        viewModel.getEvent(args.id)
+
         observeScreenState()
     }
 
-    private fun initUI() {
-    }
-
     private fun observeScreenState() {
-        viewModel.getEvent(arguments?.getString("id") ?: "no")
-
         viewModel.observeEvent().observe(viewLifecycleOwner) {
             binding.event = it
         }
