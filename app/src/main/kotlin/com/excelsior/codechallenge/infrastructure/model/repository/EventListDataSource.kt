@@ -1,11 +1,13 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
+import android.media.metrics.Event
 import com.excelsior.codechallenge.eventScreen.EventItemVO
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 import org.joda.time.DateTime
+import java.lang.Exception
 import java.text.ParseException
 
 class EventListDataSource(
@@ -15,12 +17,10 @@ class EventListDataSource(
 
     override suspend fun getEvents(filterOptions: FilterOptions): EventData {
         val eventsList = apiGateway.getEvents()
-
         return EventData(
             resolveEventsTimeRange(eventsList),
             eventsList
                 .applyFilter(filterOptions)
-                .map { eventMapper.fromSource(it) }
         )
     }
 
@@ -50,7 +50,7 @@ class EventListDataSource(
             val firstDate = DateFormatter.print(sortedByDateEvents.first().date)
             val lastDate = DateFormatter.print(sortedByDateEvents.last().date)
             EventTimeRange(firstDate, lastDate)
-        } catch (parseException: ParseException) {
+        } catch (parseException: Exception) {
             val exceptionDate = DateFormatter.print(DateTime.now())
             EventTimeRange(exceptionDate, exceptionDate)
         }

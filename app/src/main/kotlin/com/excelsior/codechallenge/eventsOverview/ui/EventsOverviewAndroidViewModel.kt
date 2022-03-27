@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
+import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
 import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
 import com.excelsior.codechallenge.infrastructure.model.repository.SortType
@@ -33,7 +34,7 @@ class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewM
                 eventsLiveData.postValue(
                     EventsOverviewState.EventsLoaded(
                         events.eventTimeRange,
-                        events.eventsList,
+                        events.eventsList.map { EventMapper().fromSource(it) },
                         filterOptions
                     )
                 )
