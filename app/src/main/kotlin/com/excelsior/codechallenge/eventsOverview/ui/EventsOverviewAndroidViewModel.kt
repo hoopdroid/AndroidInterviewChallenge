@@ -5,19 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
-import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
+import com.excelsior.codechallenge.infrastructure.domain.EventsListUseCase
 import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
 import com.excelsior.codechallenge.infrastructure.model.repository.SortType
 import com.excelsior.codechallenge.infrastructure.model.repository.FieldType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
-import org.koin.core.component.inject
 
-class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewModel() {
-    private val eventDataSource: EventDataSource by inject()
+class EventsOverviewAndroidViewModel(private val eventsListUseCase: EventsListUseCase) :
+    EventsOverviewViewModel, BaseAndroidViewModel() {
     private val eventsLiveData = MutableLiveData<EventsOverviewState>()
-    private var filterOptions = FilterOptions(fieldType = FieldType.PRICE, sortType = SortType.Descending)
+    private var filterOptions = FilterOptions(
+        fieldType = FieldType.PRICE,
+        sortType = SortType.Descending
+    )
 
     init {
         fetchEvents(EventsInputType.FIELD)
@@ -29,12 +30,11 @@ class EventsOverviewAndroidViewModel : EventsOverviewViewModel, BaseAndroidViewM
         eventsLiveData.postValue(EventsOverviewState.Loading)
         viewModelScope.launch {
             try {
-                val events =
-                    eventDataSource.getEvents(filterOptions)
+                val events = eventsListUseCase.invoke(filterOptions)
                 eventsLiveData.postValue(
                     EventsOverviewState.EventsLoaded(
                         events.eventTimeRange,
-                        events.eventsList.map { EventMapper().fromSource(it) },
+                        events.eventsList,
                         filterOptions
                     )
                 )

@@ -1,6 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
 import com.excelsior.codechallenge.base.BaseMockResponseTest
+import com.excelsior.codechallenge.base.eventListFilteredByPriceDesc
+import com.excelsior.codechallenge.base.sortedMockEventList
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.squareup.moshi.JsonDataException
@@ -31,7 +33,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
             val apiResponse = eventsDataSource.getEvents(FilterOptions())
 
             assertNotNull(apiResponse)
-            assertEquals(apiResponse.eventsList.size, sortedMockEventList.size)
+            assertEquals(apiResponse.size, sortedMockEventList.size)
         }
     }
 
@@ -42,7 +44,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
             val apiResponse = eventsDataSource.getEvents(FilterOptions())
 
             assertNotNull(apiResponse)
-            assertEquals(apiResponse.eventsList.size, 0)
+            assertEquals(apiResponse.size, 0)
         }
     }
 
@@ -64,7 +66,6 @@ class EventDataSourceTest : BaseMockResponseTest() {
             mockResponse("json/response_items.json")
             val givePricesSort =
                 eventsDataSource.getEvents(FilterOptions(FieldType.PRICE, SortType.Ascending))
-                    .eventsList
             val expectedPricesSort = sortedMockEventList
 
             assertEquals(givePricesSort, expectedPricesSort)
@@ -78,7 +79,6 @@ class EventDataSourceTest : BaseMockResponseTest() {
             mockResponse("json/response_items.json")
             val givePricesSort =
                 eventsDataSource.getEvents(FilterOptions(FieldType.DATE, SortType.Ascending))
-                    .eventsList
             val expectedPricesSort = sortedMockEventList
 
             assertEquals(givePricesSort, expectedPricesSort)
@@ -91,7 +91,6 @@ class EventDataSourceTest : BaseMockResponseTest() {
             mockResponse("json/response_items.json")
             val givePricesSort =
                 eventsDataSource.getEvents(FilterOptions(FieldType.PRICE, SortType.Descending))
-                    .eventsList
             val expectedPricesSort = eventListFilteredByPriceDesc
 
             assertEquals(givePricesSort, expectedPricesSort)
@@ -104,7 +103,6 @@ class EventDataSourceTest : BaseMockResponseTest() {
             mockResponse("json/response_items.json")
             val givePricesSort =
                 eventsDataSource.getEvents(FilterOptions(FieldType.DATE, SortType.Descending))
-                    .eventsList
             val expectedPricesSort = eventListFilteredByPriceDesc
 
             assertEquals(givePricesSort, expectedPricesSort)

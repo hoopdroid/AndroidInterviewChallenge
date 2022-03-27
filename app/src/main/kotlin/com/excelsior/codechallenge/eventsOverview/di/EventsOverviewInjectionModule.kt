@@ -9,7 +9,7 @@ object EventsOverviewInjectionModule {
     val module = module {
 
         viewModel {
-            EventsOverviewAndroidViewModel()
+            EventsOverviewAndroidViewModel(get())
         }
     }
 }

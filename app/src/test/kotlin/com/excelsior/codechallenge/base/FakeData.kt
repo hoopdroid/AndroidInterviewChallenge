@@ -1,4 +1,4 @@
-package com.excelsior.codechallenge.infrastructure.model.repository
+package com.excelsior.codechallenge.base
 
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import org.joda.time.DateTime
