@@ -4,7 +4,6 @@ import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.model.repository.*
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
-import org.joda.time.DateTime
 import java.lang.Exception
 
 class EventsListUseCaseImpl(
@@ -14,7 +13,7 @@ class EventsListUseCaseImpl(
     override suspend fun invoke(filterOptions: FilterOptions): EventData {
         val eventsList = dataSource.getEvents(filterOptions)
         val timeRange = resolveEventsTimeRange(eventsList)
-        return EventData(timeRange, eventsList.map { eventMapper.fromSource(it) })
+        return EventData(timeRange, eventsList.map { eventMapper.toVO(it) })
     }
 
     private fun resolveEventsTimeRange(eventsList: List<EventsDTO>): EventTimeRange {

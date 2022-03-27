@@ -8,7 +8,7 @@ import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 
 class EventMapper {
 
-    fun fromSource(event: EventsDTO): EventVO =
+    fun toVO(event: EventsDTO): EventVO =
         EventVO(
             id = event.guid,
             name = event.event,
@@ -16,7 +16,7 @@ class EventMapper {
             formattedDate = DateFormatter.print(event.date)
         )
 
-    fun fromItem(event: EventItemDTO): EventItemVO =
+    fun toVO(event: EventItemDTO): EventItemVO =
         EventItemVO(
             id = event.guid,
             name = event.event,

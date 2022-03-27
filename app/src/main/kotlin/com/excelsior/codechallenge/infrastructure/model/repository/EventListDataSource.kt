@@ -14,7 +14,7 @@ class EventListDataSource(
         apiGateway.getEvents().applyFilter(filterOptions)
 
     override suspend fun getEvent(id: String): EventItemVO {
-        return eventMapper.fromItem(apiGateway.getEvent(id))
+        return eventMapper.toVO(apiGateway.getEvent(id))
     }
 
     private fun List<EventsDTO>.applyFilter(filterOptions: FilterOptions): List<EventsDTO> {

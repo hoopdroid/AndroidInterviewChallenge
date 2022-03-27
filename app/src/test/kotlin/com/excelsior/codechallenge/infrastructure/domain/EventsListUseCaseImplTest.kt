@@ -26,7 +26,7 @@ class EventsListUseCaseImplTest {
         runBlocking {
             whenever(eventDataSource.getEvents(filterOptions)).thenAnswer { sortedMockEventList }
 
-            val eventsList = sortedMockEventList.map { eventMapper.fromSource(it) }
+            val eventsList = sortedMockEventList.map { eventMapper.toVO(it) }
             val eventTimeRange = mockUseCase.invoke(filterOptions).eventTimeRange
 
             Assert.assertEquals(eventTimeRange.fromDate, eventsList.first().formattedDate)
