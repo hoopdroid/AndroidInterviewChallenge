@@ -1,7 +1,7 @@
 package com.excelsior.codechallenge.infrastructure.domain.di
 
-import com.excelsior.codechallenge.infrastructure.domain.EventsListUseCase
-import com.excelsior.codechallenge.infrastructure.domain.EventsListUseCaseImpl
+import com.excelsior.codechallenge.infrastructure.domain.EventListInteractor
+import com.excelsior.codechallenge.infrastructure.domain.EventListInteractorImpl
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import org.koin.dsl.module
 
@@ -12,8 +12,8 @@ object DomainInjectionModule {
             EventMapper()
         }
 
-        single<EventsListUseCase> {
-            EventsListUseCaseImpl(get(), get())
+        single<EventListInteractor> {
+            EventListInteractorImpl(get(), get())
         }
     }
 }

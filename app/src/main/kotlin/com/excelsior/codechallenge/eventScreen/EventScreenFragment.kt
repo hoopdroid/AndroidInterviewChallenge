@@ -17,13 +17,11 @@ class EventScreenFragment : BaseFragment<EventsScreenViewModel, EventScreenBindi
     override val layoutId: Int = R.layout.event_screen
     override val viewModel: EventsScreenViewModel by viewModel<EventsScreenAndroidViewModel>()
 
-    private val args: EventScreenFragmentArgs by navArgs<EventScreenFragmentArgs>()
+    private val args: EventScreenFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.getEvent(args.id)
-
         observeScreenState()
     }
 

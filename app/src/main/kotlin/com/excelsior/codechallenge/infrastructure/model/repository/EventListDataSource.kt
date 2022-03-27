@@ -1,20 +1,18 @@
 package com.excelsior.codechallenge.infrastructure.model.repository
 
-import com.excelsior.codechallenge.eventScreen.EventItemVO
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
+import com.excelsior.codechallenge.infrastructure.network.data.EventItemDTO
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 
 class EventListDataSource(
-    private val apiGateway: ApiGateway,
-    private val eventMapper: EventMapper
+    private val apiGateway: ApiGateway
 ) : EventDataSource {
 
     override suspend fun getEvents(filterOptions: FilterOptions): List<EventsDTO> =
         apiGateway.getEvents().applyFilter(filterOptions)
 
-    override suspend fun getEvent(id: String): EventItemVO {
-        return eventMapper.toVO(apiGateway.getEvent(id))
+    override suspend fun getEvent(id: String): EventItemDTO {
+        return apiGateway.getEvent(id)
     }
 
     private fun List<EventsDTO>.applyFilter(filterOptions: FilterOptions): List<EventsDTO> {

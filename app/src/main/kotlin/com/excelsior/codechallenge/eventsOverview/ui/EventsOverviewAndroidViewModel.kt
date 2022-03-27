@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
-import com.excelsior.codechallenge.infrastructure.domain.EventsListUseCase
+import com.excelsior.codechallenge.infrastructure.domain.EventListInteractor
 import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
 import com.excelsior.codechallenge.infrastructure.model.repository.SortType
 import com.excelsior.codechallenge.infrastructure.model.repository.FieldType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
 
-class EventsOverviewAndroidViewModel(private val eventsListUseCase: EventsListUseCase) :
+class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor) :
     EventsOverviewViewModel, BaseAndroidViewModel() {
     private val eventsLiveData = MutableLiveData<EventsOverviewState>()
     private var filterOptions = FilterOptions(
@@ -25,12 +25,14 @@ class EventsOverviewAndroidViewModel(private val eventsListUseCase: EventsListUs
     }
 
     override fun fetchEvents(inputType: EventsInputType?) {
-        updateFilterOptions(inputType)
+        inputType?.let {
+            updateFilterOptions(inputType)
+        }
 
         eventsLiveData.postValue(EventsOverviewState.Loading)
         viewModelScope.launch {
             try {
-                val events = eventsListUseCase.invoke(filterOptions)
+                val events = interactor.loadEvents(filterOptions)
                 eventsLiveData.postValue(
                     EventsOverviewState.EventsLoaded(
                         events.eventTimeRange,
@@ -44,16 +46,16 @@ class EventsOverviewAndroidViewModel(private val eventsListUseCase: EventsListUs
         }
     }
 
-    private fun updateFilterOptions(inputType: EventsInputType?) {
-        when (inputType) {
+    private fun updateFilterOptions(inputType: EventsInputType) {
+        filterOptions = when (inputType) {
             EventsInputType.SORT -> {
-                filterOptions = filterOptions.copy(
+                filterOptions.copy(
                     fieldType = filterOptions.fieldType,
                     sortType = switchSortType(filterOptions.sortType)
                 )
             }
             EventsInputType.FIELD -> {
-                filterOptions = filterOptions.copy(
+                filterOptions.copy(
                     fieldType = switchFieldType(filterOptions.fieldType),
                     sortType = filterOptions.sortType
                 )

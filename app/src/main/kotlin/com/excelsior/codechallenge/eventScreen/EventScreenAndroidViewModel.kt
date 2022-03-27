@@ -3,23 +3,17 @@ package com.excelsior.codechallenge.eventScreen
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
+import com.excelsior.codechallenge.infrastructure.domain.EventListInteractor
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
-import org.koin.core.component.inject
 
-class EventsScreenAndroidViewModel : EventsScreenViewModel, BaseAndroidViewModel() {
-    private val eventDataSource: EventDataSource by inject()
+class EventsScreenAndroidViewModel(private val interactor: EventListInteractor) : EventsScreenViewModel, BaseAndroidViewModel() {
     private val eventsLiveData = MutableLiveData<EventItemVO>()
 
     override fun getEvent(id: String) {
         viewModelScope.launch {
             try {
-                val event =
-                    eventDataSource.getEvent(id)
-                eventsLiveData.postValue(
-                    event
-                )
+                eventsLiveData.postValue(interactor.loadEvent(id))
             } catch (e: Exception) {
 
             }

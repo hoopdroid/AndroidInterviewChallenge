@@ -8,7 +8,7 @@ object ModelInjectionModule {
 
     val module = module {
         single<EventDataSource> {
-            EventListDataSource(get(), get())
+            EventListDataSource(get())
         }
     }
 }

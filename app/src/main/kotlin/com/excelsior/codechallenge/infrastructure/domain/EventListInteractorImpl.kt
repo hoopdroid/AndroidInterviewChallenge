@@ -1,20 +1,24 @@
 package com.excelsior.codechallenge.infrastructure.domain
 
+import com.excelsior.codechallenge.eventScreen.EventItemVO
 import com.excelsior.codechallenge.infrastructure.model.EventMapper
 import com.excelsior.codechallenge.infrastructure.model.repository.*
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 import java.lang.Exception
 
-class EventsListUseCaseImpl(
+class EventListInteractorImpl(
     private val dataSource: EventDataSource,
     private val eventMapper: EventMapper
-) : EventsListUseCase {
-    override suspend fun invoke(filterOptions: FilterOptions): EventData {
+) : EventListInteractor {
+    override suspend fun loadEvents(filterOptions: FilterOptions): EventData {
         val eventsList = dataSource.getEvents(filterOptions)
         val timeRange = resolveEventsTimeRange(eventsList)
         return EventData(timeRange, eventsList.map { eventMapper.toVO(it) })
     }
+
+    override suspend fun loadEvent(id: String): EventItemVO =
+        eventMapper.toVO(dataSource.getEvent(id))
 
     private fun resolveEventsTimeRange(eventsList: List<EventsDTO>): EventTimeRange {
         val sortedByDateEvents = eventsList.sortedBy { it.date }

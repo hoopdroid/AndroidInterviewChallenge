@@ -15,11 +15,11 @@ import org.mockito.kotlin.whenever
 import java.lang.Exception
 
 @RunWith(JUnit4::class)
-class EventsListUseCaseImplTest {
+class EventListInteractorImplTest {
     private val eventDataSource: EventDataSource = mock()
     private val eventMapper: EventMapper = EventMapper()
     private val filterOptions: FilterOptions = FilterOptions()
-    private val mockUseCase = EventsListUseCaseImpl(eventDataSource, eventMapper)
+    private val mockUseCase = EventListInteractorImpl(eventDataSource, eventMapper)
 
     @Test
     fun `test if start and end dates are correctly resolved`() {
@@ -27,7 +27,7 @@ class EventsListUseCaseImplTest {
             whenever(eventDataSource.getEvents(filterOptions)).thenAnswer { sortedMockEventList }
 
             val eventsList = sortedMockEventList.map { eventMapper.toVO(it) }
-            val eventTimeRange = mockUseCase.invoke(filterOptions).eventTimeRange
+            val eventTimeRange = mockUseCase.loadEvents(filterOptions).eventTimeRange
 
             Assert.assertEquals(eventTimeRange.fromDate, eventsList.first().formattedDate)
             Assert.assertEquals(eventTimeRange.untilDate, eventsList.last().formattedDate)
@@ -41,7 +41,7 @@ class EventsListUseCaseImplTest {
             whenever(eventDataSource.getEvents(filterOptions)).thenAnswer { emptyList<EventsDTO>() }
 
             try {
-                mockUseCase.invoke(filterOptions).eventTimeRange
+                mockUseCase.loadEvents(filterOptions).eventTimeRange
             } catch (parseException: Exception) {
                 Assert.assertNotNull(parseException)
             }

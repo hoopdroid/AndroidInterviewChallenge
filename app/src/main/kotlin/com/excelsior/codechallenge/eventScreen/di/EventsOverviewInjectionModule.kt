@@ -10,7 +10,7 @@ object EventsScreenInjectionModule {
     val module = module {
 
         viewModel {
-            EventsScreenAndroidViewModel()
+            EventsScreenAndroidViewModel(get())
         }
     }
 }
