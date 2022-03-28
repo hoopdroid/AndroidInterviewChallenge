@@ -29,19 +29,24 @@ Documentation for API's could be found in Postman collection under the folder 'd
 
 # TODO:
 ### Business logic tasks:
-[X] implement ASYNCHRONOUS backend communication instead of MOCK samples (see Postman collection for reference and infrastructure/network project package)
-[X] fix date formatting on overview page to the following format: "05 August 2021"
-[X] add correct date for "fromDate" and "untilDate" for events overview page title
-[X] implement sorting by date and by price for overview screen
-[X] implement event details screen
+[x] implement ASYNCHRONOUS backend communication instead of MOCK samples (see Postman collection for reference and infrastructure/network project package)
+
+[x] fix date formatting on overview page to the following format: "05 August 2021"
+
+[x] add correct date for "fromDate" and "untilDate" for events overview page title
+
+[x] implement sorting by date and by price for overview screen
+
+[x] implement event details screen
 
 ### Code refactoring tasks:
-[X] EventsOverviewFragment contains the mock of the events. Please refactor in order to fetch the data from backend and to make the part of code testable.
-[X] Write UnitTests for sorting/filtering logic of events overview list
+[x] EventsOverviewFragment contains the mock of the events. Please refactor in order to fetch the data from backend and to make the part of code testable.
+
+[x] Write UnitTests for sorting/filtering logic of events overview list
 
 ## Optional
 ### Business logic tasks:
-[X] implement logic of filtering only upcoming events (events which are older than today do not show in the list)
+[x] implement logic of filtering only upcoming events (events which are older than today do not show in the list)
 
 ### Code refactoring tasks:
 [ ] Write UnitTests for EventsOverviewAndroidViewModel
