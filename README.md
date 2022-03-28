@@ -1,7 +1,8 @@
 # Excelsior code challenge
-<img src="screenshot.png" alt="drawing" width="400" height="400"/>
-<img src="screenshot.png" alt="drawing" width="400" height="400"/>
-
+<p float="left">
+  <img src="screenshot.png" width="484" height="484" />
+  <img src="screenshot_2.png" width="224" height="484" />
+</p>
 
 # Use Cases
 - As a user I want to see a list of upcoming events sorted by date (ascending)
