@@ -9,6 +9,5 @@ import org.koin.core.component.KoinComponent
 open class BaseAndroidViewModel : BaseViewModel, KoinComponent, ViewModel() {
 
     override val direction = SingleLiveEvent<NavDirections>()
-
     override val showError = MutableLiveData<String>()
 }

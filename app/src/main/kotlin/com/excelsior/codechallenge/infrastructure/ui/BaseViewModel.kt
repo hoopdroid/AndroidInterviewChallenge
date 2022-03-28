@@ -8,6 +8,5 @@ import com.excelsior.codechallenge.infrastructure.utils.SingleLiveEvent
 interface BaseViewModel {
 
     val direction: MutableLiveData<NavDirections>
-
     val showError: LiveData<String>
 }

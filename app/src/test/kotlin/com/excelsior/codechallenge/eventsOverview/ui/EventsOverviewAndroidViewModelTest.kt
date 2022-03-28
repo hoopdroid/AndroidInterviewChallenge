@@ -21,9 +21,9 @@ import retrofit2.HttpException
 class EventsOverviewViewModelTest {
     @get:Rule
     val testInstantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
-
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
+
     private val interactor: EventsInteractor = mock()
     private val observer: Observer<EventsOverviewState> = mock()
     private val mockData = EventData(EventTimeRange("", ""), emptyList())
@@ -60,7 +60,6 @@ class EventsOverviewViewModelTest {
     @Test
     fun `test when fetching events failed then switch to error`() {
         val exception: HttpException = mock()
-
         testCoroutineRule.runBlockingTest {
             whenever(interactor.loadEvents(isA())).thenAnswer { exception }
             viewModel.fetchEvents()

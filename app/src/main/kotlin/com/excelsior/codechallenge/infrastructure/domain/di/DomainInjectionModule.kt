@@ -6,7 +6,6 @@ import com.excelsior.codechallenge.infrastructure.mapper.EventMapper
 import org.koin.dsl.module
 
 object DomainInjectionModule {
-
     val module = module {
         single {
             EventMapper()
