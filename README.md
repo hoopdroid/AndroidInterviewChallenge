@@ -1,10 +1,6 @@
-# Welcome
-
-Hi there, thank you for start reading README first. The goal of current technical task is to bring developer into the environment which we all facing when joining a new team. Usually there is some architecture already in the project together with some awesome custom components, bugs and pieces of code which need to be refactored.
-
-So you are the lucky one who can help with all open tasks.
-
-The idea for the project is pretty simple. It's a viewer of events with the possibility to see the details of each of it. Existing project contains only a skeleton based on MVVM + Clean Architecture including some mock data. Your task is to implement some business logic as well as refactoring some parts of the code.
+# Excelsior code challenge
+<img src="screenshot.png" alt="drawing" width="400" height="400"/>
+<img src="screenshot.png" alt="drawing" width="400" height="400"/>
 
 
 # Use Cases
