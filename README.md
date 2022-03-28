@@ -49,7 +49,7 @@ Documentation for API's could be found in Postman collection under the folder 'd
 [x] implement logic of filtering only upcoming events (events which are older than today do not show in the list)
 
 ### Code refactoring tasks:
-[ ] Write UnitTests for EventsOverviewAndroidViewModel
+[x] Write UnitTests for EventsOverviewAndroidViewModel
 
 # Good to know
 - Feel free to add any dependencies that you need into the project, to be able to complete the task

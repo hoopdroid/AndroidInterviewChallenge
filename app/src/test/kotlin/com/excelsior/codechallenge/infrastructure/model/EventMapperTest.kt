@@ -13,7 +13,7 @@ class EventMapperTest {
     private val mapper = EventMapper()
 
     @Test
-    fun `test mapper from events list dto to events list vo`() {
+    fun `test map from events list dto to events list vo`() {
         val dto = sortedMockEventList.first()
         val expectedVO = EventVO(
             dto.guid,
@@ -26,7 +26,7 @@ class EventMapperTest {
     }
 
     @Test
-    fun `test mapper from event item dto to event item vo`() {
+    fun `test map from event item dto to event item vo`() {
         val dto = EventItemDTO(
             "75990293-2829-458f-84c6-e79830f58d12",
             "Nutralab Noralex",

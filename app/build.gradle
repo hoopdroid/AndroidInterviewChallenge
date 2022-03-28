@@ -25,6 +25,11 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+        unitTests.includeAndroidResources = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -119,5 +124,6 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest"
     def mockWebserverVersion = "4.7.2"
     testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebserverVersion"
-    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    def mockitoKotlin = "4.0.0"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoKotlin"
 }

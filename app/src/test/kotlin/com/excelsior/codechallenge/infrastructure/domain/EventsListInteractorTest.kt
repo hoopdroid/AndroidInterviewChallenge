@@ -15,11 +15,11 @@ import org.mockito.kotlin.whenever
 import java.lang.Exception
 
 @RunWith(JUnit4::class)
-class EventListInteractorImplTest {
+class EventsListInteractorTest {
     private val eventDataSource: EventDataSource = mock()
     private val eventMapper: EventMapper = EventMapper()
     private val filterOptions: FilterOptions = FilterOptions()
-    private val mockUseCase = EventListInteractorImpl(eventDataSource, eventMapper)
+    private val mockUseCase = EventsListInteractor(eventDataSource, eventMapper)
 
     @Test
     fun `test if start and end dates are correctly resolved`() {

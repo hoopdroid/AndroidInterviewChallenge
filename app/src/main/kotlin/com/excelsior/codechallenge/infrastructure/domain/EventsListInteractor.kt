@@ -10,10 +10,10 @@ import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 import java.lang.Exception
 
-class EventListInteractorImpl(
+class EventsListInteractor(
     private val dataSource: EventDataSource,
     private val eventMapper: EventMapper
-) : EventListInteractor {
+) : EventsInteractor {
     override suspend fun loadEvents(filterOptions: FilterOptions): EventData {
         val eventsList = dataSource.getEvents(filterOptions)
         val timeRange = resolveEventsTimeRange(eventsList)

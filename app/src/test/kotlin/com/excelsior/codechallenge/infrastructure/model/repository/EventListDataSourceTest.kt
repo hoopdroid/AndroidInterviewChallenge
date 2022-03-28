@@ -28,7 +28,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given response ok when fetching results then return a list with elements`() {
+    fun `test response ok when fetching results then return a list with elements`() {
         runBlocking {
             mockResponse("json/response_items.json", HttpURLConnection.HTTP_OK)
             val apiResponse = eventsDataSource.getEvents(FilterOptions())
@@ -39,7 +39,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given response ok when fetching empty results then return an empty list`() {
+    fun `test response ok when fetching empty results then return an empty list`() {
         runBlocking {
             mockResponse("json/response_empty_list.json", HttpURLConnection.HTTP_OK)
             val apiResponse = eventsDataSource.getEvents(FilterOptions())
@@ -50,9 +50,9 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given failured response when parsing json`() {
+    fun `test failured response when parsing json`() {
         runBlocking {
-            mockResponse("json/response_incorrect_items.json", HttpURLConnection.HTTP_OK)
+            mockResponse("json/response_incorrect_type.json", HttpURLConnection.HTTP_OK)
             try {
                 eventsDataSource.getEvents(FilterOptions())
             } catch (exception: JsonDataException) {
@@ -62,7 +62,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given response ok when filter is by price then return sorted by price list ascending`() {
+    fun `test response ok when filter is by price then return sorted by price list ascending`() {
         runBlocking {
             mockResponse("json/response_items.json")
             val givePricesSort =
@@ -75,7 +75,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
 
 
     @Test
-    fun `given response ok when filter is by date then return sorted by date list ascending`() {
+    fun `test response ok when filter is by date then return sorted by date list ascending`() {
         runBlocking {
             mockResponse("json/response_items.json")
             val givePricesSort =
@@ -87,7 +87,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given response ok when filter is by price then return sorted by price list descending`() {
+    fun `test response ok when filter is by price then return sorted by price list descending`() {
         runBlocking {
             mockResponse("json/response_items.json")
             val givePricesSort =
@@ -99,7 +99,7 @@ class EventDataSourceTest : BaseMockResponseTest() {
     }
 
     @Test
-    fun `given response ok when filter is by date then return sorted by date list descending`() {
+    fun `test response ok when filter is by date then return sorted by date list descending`() {
         runBlocking {
             mockResponse("json/response_items.json")
             val givePricesSort =

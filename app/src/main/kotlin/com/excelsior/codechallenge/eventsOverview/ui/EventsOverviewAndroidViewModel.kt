@@ -5,21 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
-import com.excelsior.codechallenge.infrastructure.domain.EventListInteractor
+import com.excelsior.codechallenge.infrastructure.domain.EventsInteractor
 import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
 import com.excelsior.codechallenge.eventsOverview.ui.model.SortType
 import com.excelsior.codechallenge.eventsOverview.ui.model.FieldType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
 
-class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor) :
+class EventsOverviewAndroidViewModel(private val interactor: EventsInteractor) :
     EventsOverviewViewModel, BaseAndroidViewModel() {
     private val eventsLiveData = MutableLiveData<EventsOverviewState>()
     private var filterOptions = FilterOptions()
-
-    init {
-        fetchEvents(EventsInputType.FieldFilter)
-    }
 
     override fun fetchEvents(inputType: EventsInputType?) {
         inputType?.let {
@@ -38,7 +34,7 @@ class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor
                     )
                 )
             } catch (exception: Exception) {
-                eventsLiveData.postValue(EventsOverviewState.Error())
+                eventsLiveData.postValue(EventsOverviewState.Error)
             }
         }
     }
