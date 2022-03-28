@@ -16,7 +16,7 @@ class DateFormatterTest {
     }
 
     @Test
-    fun `test if date was correctly parsed when date incorrect format`() {
+    fun `test if now date was correctly parsed`() {
         val dateTime = DateTime()
         val calendar = Calendar.getInstance()
         Assert.assertEquals(

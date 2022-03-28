@@ -7,8 +7,6 @@ import com.excelsior.codechallenge.infrastructure.model.di.ModelInjectionModule
 import com.excelsior.codechallenge.infrastructure.network.di.NetworkInjectionModule
 
 object InjectionModules {
-
-    // add all feature injection modules here
     val modules = listOf(
         EventsOverviewInjectionModule.module,
         EventsScreenInjectionModule.module,

@@ -5,7 +5,6 @@ import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSour
 import org.koin.dsl.module
 
 object ModelInjectionModule {
-
     val module = module {
         single<EventDataSource> {
             EventListDataSource(get())

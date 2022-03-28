@@ -1,13 +1,12 @@
-package com.excelsior.codechallenge.infrastructure.model
+package com.excelsior.codechallenge.infrastructure.mapper
 
-import com.excelsior.codechallenge.eventScreen.EventItemVO
+import com.excelsior.codechallenge.eventScreen.ui.EventItemVO
 import com.excelsior.codechallenge.eventsOverview.ui.EventVO
 import com.excelsior.codechallenge.infrastructure.network.data.EventItemDTO
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
 
 class EventMapper {
-
     fun toVO(event: EventsDTO): EventVO =
         EventVO(
             id = event.guid,

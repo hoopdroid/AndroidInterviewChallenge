@@ -1,7 +1,10 @@
 package com.excelsior.codechallenge.infrastructure.domain
 
-import com.excelsior.codechallenge.eventScreen.EventItemVO
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
+import com.excelsior.codechallenge.eventScreen.ui.EventItemVO
+import com.excelsior.codechallenge.eventsOverview.ui.model.EventData
+import com.excelsior.codechallenge.eventsOverview.ui.model.EventTimeRange
+import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
+import com.excelsior.codechallenge.infrastructure.mapper.EventMapper
 import com.excelsior.codechallenge.infrastructure.model.repository.*
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import com.excelsior.codechallenge.infrastructure.utils.DateFormatter

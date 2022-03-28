@@ -3,7 +3,9 @@ package com.excelsior.codechallenge.infrastructure.model.repository
 import com.excelsior.codechallenge.base.BaseMockResponseTest
 import com.excelsior.codechallenge.base.eventListFilteredByPriceDesc
 import com.excelsior.codechallenge.base.sortedMockEventList
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
+import com.excelsior.codechallenge.eventsOverview.ui.model.FieldType
+import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
+import com.excelsior.codechallenge.eventsOverview.ui.model.SortType
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.squareup.moshi.JsonDataException
 import kotlinx.coroutines.runBlocking

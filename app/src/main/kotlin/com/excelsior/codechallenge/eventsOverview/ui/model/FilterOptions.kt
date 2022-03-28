@@ -1,4 +1,4 @@
-package com.excelsior.codechallenge.infrastructure.model.repository
+package com.excelsior.codechallenge.eventsOverview.ui.model
 
 data class FilterOptions(
     val fieldType: FieldType = FieldType.PRICE,

@@ -1,4 +1,4 @@
-package com.excelsior.codechallenge.infrastructure.network
+package com.excelsior.codechallenge.infrastructure.network.adapter
 
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.JsonAdapter

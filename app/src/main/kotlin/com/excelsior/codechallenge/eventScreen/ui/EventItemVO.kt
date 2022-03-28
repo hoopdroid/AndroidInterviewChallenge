@@ -1,5 +1,4 @@
-package com.excelsior.codechallenge.eventScreen
-
+package com.excelsior.codechallenge.eventScreen.ui
 
 data class EventItemVO(
     val id: String,

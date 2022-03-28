@@ -6,9 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsInputType
 import com.excelsior.codechallenge.eventsOverview.ui.model.EventsOverviewState
 import com.excelsior.codechallenge.infrastructure.domain.EventListInteractor
-import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
-import com.excelsior.codechallenge.infrastructure.model.repository.SortType
-import com.excelsior.codechallenge.infrastructure.model.repository.FieldType
+import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
+import com.excelsior.codechallenge.eventsOverview.ui.model.SortType
+import com.excelsior.codechallenge.eventsOverview.ui.model.FieldType
 import com.excelsior.codechallenge.infrastructure.ui.BaseAndroidViewModel
 import kotlinx.coroutines.launch
 
@@ -37,7 +37,7 @@ class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor
                         filterOptions
                     )
                 )
-            } catch (e: Exception) {
+            } catch (exception: Exception) {
                 eventsLiveData.postValue(EventsOverviewState.Error())
             }
         }

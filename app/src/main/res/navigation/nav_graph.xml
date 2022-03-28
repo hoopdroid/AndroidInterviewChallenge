@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/eventScreenFragment"
-        android:name="com.excelsior.codechallenge.eventScreen.EventScreenFragment"
+        android:name="com.excelsior.codechallenge.eventScreen.ui.EventScreenFragment"
         android:label="EventScreenFragment">
         <argument
             android:name="id"

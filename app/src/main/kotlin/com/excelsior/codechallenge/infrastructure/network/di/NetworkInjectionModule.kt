@@ -1,6 +1,6 @@
 package com.excelsior.codechallenge.infrastructure.network.di
 
-import com.excelsior.codechallenge.infrastructure.network.DateTimeTypeMoshiAdapter
+import com.excelsior.codechallenge.infrastructure.network.adapter.DateTimeTypeMoshiAdapter
 import com.excelsior.codechallenge.infrastructure.network.Api
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
 import com.excelsior.codechallenge.infrastructure.network.gateway.ApiRemoteGateway

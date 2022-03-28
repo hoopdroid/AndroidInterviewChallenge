@@ -7,7 +7,6 @@ import org.koin.dsl.module
 object EventsOverviewInjectionModule {
 
     val module = module {
-
         viewModel {
             EventsOverviewAndroidViewModel(get())
         }

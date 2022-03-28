@@ -1,8 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.domain
 
-import com.excelsior.codechallenge.infrastructure.model.EventMapper
+import com.excelsior.codechallenge.infrastructure.mapper.EventMapper
 import com.excelsior.codechallenge.infrastructure.model.repository.EventDataSource
-import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
+import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
 import com.excelsior.codechallenge.base.sortedMockEventList
 import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
 import kotlinx.coroutines.runBlocking

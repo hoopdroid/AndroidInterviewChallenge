@@ -1,8 +1,8 @@
 package com.excelsior.codechallenge.infrastructure.domain
 
-import com.excelsior.codechallenge.eventScreen.EventItemVO
-import com.excelsior.codechallenge.infrastructure.model.repository.EventData
-import com.excelsior.codechallenge.infrastructure.model.repository.FilterOptions
+import com.excelsior.codechallenge.eventScreen.ui.EventItemVO
+import com.excelsior.codechallenge.eventsOverview.ui.model.EventData
+import com.excelsior.codechallenge.eventsOverview.ui.model.FilterOptions
 
 interface EventListInteractor {
     suspend fun loadEvents(filterOptions: FilterOptions): EventData
