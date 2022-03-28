@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/action_outdated"
-        android:icon="@drawable/ic_baseline_undo_24"
+        android:icon="@drawable/ic_baseline_update_reversed_24"
         android:title="Outdated"
         app:showAsAction="ifRoom"/>
 

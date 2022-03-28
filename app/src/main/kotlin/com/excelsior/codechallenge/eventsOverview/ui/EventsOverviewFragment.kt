@@ -106,9 +106,9 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
         }
 
         if (filterOptions.needToShowOutDated == true) {
-            filterOutDatedItem.setIcon(R.drawable.ic_baseline_undo_24)
+            filterOutDatedItem.setIcon(R.drawable.ic_baseline_update_reversed_24)
         } else {
-            filterOutDatedItem.setIcon(R.drawable.ic_baseline_redo_24)
+            filterOutDatedItem.setIcon(R.drawable.ic_baseline_update_24)
         }
     }
 
