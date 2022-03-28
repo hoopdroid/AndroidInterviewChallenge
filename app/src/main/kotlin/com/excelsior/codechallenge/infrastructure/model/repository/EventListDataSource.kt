@@ -16,10 +16,11 @@ class EventListDataSource(
     }
 
     private fun List<EventsDTO>.applyFilter(filterOptions: FilterOptions): List<EventsDTO> {
-        return when (filterOptions.sortType) {
+        val list = when (filterOptions.sortType) {
             SortType.Ascending -> sortedByOptions(filterOptions)
             SortType.Descending -> sortedByOptions(filterOptions).asReversed()
         }
+        return list.filter { if (filterOptions.needToShowOutDated == true) true else it.date.isAfterNow }
     }
 
     private fun List<EventsDTO>.sortedByOptions(

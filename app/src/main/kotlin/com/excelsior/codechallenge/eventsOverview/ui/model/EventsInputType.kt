@@ -2,6 +2,7 @@ package com.excelsior.codechallenge.eventsOverview.ui.model
 
 
 sealed class EventsInputType {
-    object FIELD : EventsInputType()
-    object SORT : EventsInputType()
+    object FieldFilter : EventsInputType()
+    object SortFilter : EventsInputType()
+    object ShowOutdatedFilter : EventsInputType()
 }

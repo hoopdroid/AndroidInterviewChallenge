@@ -15,13 +15,10 @@ import kotlinx.coroutines.launch
 class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor) :
     EventsOverviewViewModel, BaseAndroidViewModel() {
     private val eventsLiveData = MutableLiveData<EventsOverviewState>()
-    private var filterOptions = FilterOptions(
-        fieldType = FieldType.PRICE,
-        sortType = SortType.Descending
-    )
+    private var filterOptions = FilterOptions()
 
     init {
-        fetchEvents(EventsInputType.FIELD)
+        fetchEvents(EventsInputType.FieldFilter)
     }
 
     override fun fetchEvents(inputType: EventsInputType?) {
@@ -48,16 +45,23 @@ class EventsOverviewAndroidViewModel(private val interactor: EventListInteractor
 
     private fun updateFilterOptions(inputType: EventsInputType) {
         filterOptions = when (inputType) {
-            EventsInputType.SORT -> {
+            is EventsInputType.SortFilter -> {
                 filterOptions.copy(
                     fieldType = filterOptions.fieldType,
                     sortType = switchSortType(filterOptions.sortType)
                 )
             }
-            EventsInputType.FIELD -> {
+            is EventsInputType.FieldFilter -> {
                 filterOptions.copy(
                     fieldType = switchFieldType(filterOptions.fieldType),
                     sortType = filterOptions.sortType
+                )
+            }
+            is EventsInputType.ShowOutdatedFilter -> {
+                filterOptions.copy(
+                    fieldType = filterOptions.fieldType,
+                    sortType = filterOptions.sortType,
+                    needToShowOutDated = filterOptions.needToShowOutDated?.not()
                 )
             }
         }

@@ -2,11 +2,7 @@ package com.excelsior.codechallenge.eventsOverview.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.databinding.ViewDataBinding
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.excelsior.codechallenge.R
 import com.excelsior.codechallenge.databinding.EventsOverviewBinding
 import com.excelsior.codechallenge.eventsOverview.ui.adapter.EventsAdapter
@@ -46,11 +42,15 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.action_filter -> {
-                    viewModel.fetchEvents(inputType = EventsInputType.SORT)
+                    viewModel.fetchEvents(inputType = EventsInputType.SortFilter)
                     true
                 }
                 R.id.action_field -> {
-                    viewModel.fetchEvents(inputType = EventsInputType.FIELD)
+                    viewModel.fetchEvents(inputType = EventsInputType.FieldFilter)
+                    true
+                }
+                R.id.action_outdated -> {
+                    viewModel.fetchEvents(inputType = EventsInputType.ShowOutdatedFilter)
                     true
                 }
                 else -> super.onOptionsItemSelected(it)
@@ -92,6 +92,7 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
     private fun renderToolbar(filterOptions: FilterOptions) {
         val filterMenuItem = binding.toolbar.menu.findItem(R.id.action_filter)
         val typeMenuItem = binding.toolbar.menu.findItem(R.id.action_field)
+        val filterOutDatedItem = binding.toolbar.menu.findItem(R.id.action_outdated)
 
         when (filterOptions.sortType) {
             is SortType.Ascending -> {
@@ -104,13 +105,18 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
             }
             is SortType.Descending -> {
                 filterMenuItem.setIcon(R.drawable.ic_filter_descending)
-
                 if (filterOptions.fieldType == FieldType.PRICE) {
                     typeMenuItem.setIcon(R.drawable.ic_baseline_attach_money_24)
                 } else {
                     typeMenuItem.setIcon(R.drawable.ic_baseline_today_24)
                 }
             }
+        }
+
+        if (filterOptions.needToShowOutDated == true) {
+            filterOutDatedItem.setIcon(R.drawable.ic_baseline_undo_24)
+        } else {
+            filterOutDatedItem.setIcon(R.drawable.ic_baseline_redo_24)
         }
     }
 

@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
+        android:id="@+id/action_outdated"
+        android:icon="@drawable/ic_baseline_undo_24"
+        android:title="Outdated"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_field"
         android:icon="@drawable/ic_baseline_attach_money_24"
         android:title="Date"

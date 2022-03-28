@@ -33,15 +33,15 @@ Documentation for API's could be found in Postman collection under the folder 'd
 [X] fix date formatting on overview page to the following format: "05 August 2021"
 [X] add correct date for "fromDate" and "untilDate" for events overview page title
 [X] implement sorting by date and by price for overview screen
-[ ] implement event details screen
+[X] implement event details screen
 
 ### Code refactoring tasks:
 [X] EventsOverviewFragment contains the mock of the events. Please refactor in order to fetch the data from backend and to make the part of code testable.
-[ ] Write UnitTests for sorting/filtering logic of events overview list
+[X] Write UnitTests for sorting/filtering logic of events overview list
 
 ## Optional
 ### Business logic tasks:
-[ ] implement logic of filtering only upcoming events (events which are older than today do not show in the list)
+[X] implement logic of filtering only upcoming events (events which are older than today do not show in the list)
 
 ### Code refactoring tasks:
 [ ] Write UnitTests for EventsOverviewAndroidViewModel

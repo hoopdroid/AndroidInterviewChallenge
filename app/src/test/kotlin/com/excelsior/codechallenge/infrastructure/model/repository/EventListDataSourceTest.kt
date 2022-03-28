@@ -18,12 +18,11 @@ import java.net.HttpURLConnection
 class EventDataSourceTest : BaseMockResponseTest() {
     private lateinit var eventsDataSource: EventDataSource
     private lateinit var apiService: ApiGateway
-    private var eventMapper = EventMapper()
 
     @Before
     fun start() {
         apiService = provideTestApiService()
-        eventsDataSource = EventListDataSource(apiService, eventMapper)
+        eventsDataSource = EventListDataSource(apiService)
     }
 
     @Test
