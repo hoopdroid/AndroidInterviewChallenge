@@ -1,11 +1,11 @@
 package com.excelsior.codechallenge.infrastructure.model
 
 import com.excelsior.codechallenge.base.sortedMockEventList
-import com.excelsior.codechallenge.eventScreen.ui.EventItemVO
-import com.excelsior.codechallenge.eventsOverview.ui.EventVO
-import com.excelsior.codechallenge.infrastructure.mapper.EventMapper
-import com.excelsior.codechallenge.infrastructure.network.data.EventItemDTO
-import com.excelsior.codechallenge.infrastructure.utils.DateFormatter
+import com.excelsior.codechallenge.presentation.eventScreen.ui.EventItemVO
+import com.excelsior.codechallenge.presentation.eventsOverview.ui.EventVO
+import com.excelsior.codechallenge.domain.mapper.EventMapper
+import com.excelsior.codechallenge.data.network.data.EventItemDTO
+import com.excelsior.codechallenge.base.utils.DateFormatter
 import org.joda.time.DateTime
 import org.junit.Test
 

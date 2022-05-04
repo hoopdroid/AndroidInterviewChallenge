@@ -8,11 +8,11 @@
 
         <variable
             name="event"
-            type="com.excelsior.codechallenge.eventsOverview.ui.EventVO" />
+            type="com.excelsior.codechallenge.presentation.eventsOverview.ui.EventVO" />
 
         <variable
             name="viewModel"
-            type="com.excelsior.codechallenge.eventsOverview.ui.EventsOverviewViewModel" />
+            type="com.excelsior.codechallenge.presentation.eventsOverview.ui.EventsOverviewViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

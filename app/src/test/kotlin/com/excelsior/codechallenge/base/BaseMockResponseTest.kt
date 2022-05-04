@@ -1,9 +1,9 @@
 package com.excelsior.codechallenge.base
 
-import com.excelsior.codechallenge.infrastructure.network.adapter.DateTimeTypeMoshiAdapter
-import com.excelsior.codechallenge.infrastructure.network.Api
-import com.excelsior.codechallenge.infrastructure.network.gateway.ApiGateway
-import com.excelsior.codechallenge.infrastructure.network.gateway.ApiRemoteGateway
+import com.excelsior.codechallenge.data.network.adapter.DateTimeTypeMoshiAdapter
+import com.excelsior.codechallenge.data.network.Api
+import com.excelsior.codechallenge.data.network.gateway.ApiGateway
+import com.excelsior.codechallenge.data.network.gateway.ApiRemoteGateway
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient

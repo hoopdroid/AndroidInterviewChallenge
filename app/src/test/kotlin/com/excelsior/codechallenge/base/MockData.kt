@@ -1,6 +1,6 @@
 package com.excelsior.codechallenge.base
 
-import com.excelsior.codechallenge.infrastructure.network.data.EventsDTO
+import com.excelsior.codechallenge.data.network.data.EventsDTO
 import org.joda.time.DateTime
 
 //[

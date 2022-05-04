@@ -1,6 +1,6 @@
 package com.excelsior.codechallenge.infrastructure.network
 
-import com.excelsior.codechallenge.infrastructure.network.adapter.DateTimeTypeMoshiAdapter
+import com.excelsior.codechallenge.data.network.adapter.DateTimeTypeMoshiAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.joda.time.DateTime

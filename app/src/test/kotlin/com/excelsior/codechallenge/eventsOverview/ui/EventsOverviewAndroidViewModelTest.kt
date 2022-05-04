@@ -3,8 +3,11 @@ package com.excelsior.codechallenge.eventsOverview.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.excelsior.codechallenge.base.TestCoroutineRule
-import com.excelsior.codechallenge.eventsOverview.ui.model.*
-import com.excelsior.codechallenge.infrastructure.domain.EventsInteractor
+import com.excelsior.codechallenge.domain.EventsInteractor
+import com.excelsior.codechallenge.presentation.eventsOverview.ui.EventsOverviewAndroidViewModel
+import com.excelsior.codechallenge.presentation.eventsOverview.ui.model.EventData
+import com.excelsior.codechallenge.presentation.eventsOverview.ui.model.EventTimeRange
+import com.excelsior.codechallenge.presentation.eventsOverview.ui.model.EventsOverviewState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.*
 import org.junit.rules.TestRule

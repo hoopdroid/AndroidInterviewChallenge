@@ -8,11 +8,11 @@
 
         <variable
             name="event"
-            type="com.excelsior.codechallenge.eventScreen.ui.EventItemVO" />
+            type="com.excelsior.codechallenge.presentation.eventScreen.ui.EventItemVO" />
 
         <variable
             name="viewModel"
-            type="com.excelsior.codechallenge.eventScreen.ui.EventScreenViewModel" />
+            type="com.excelsior.codechallenge.presentation.eventScreen.ui.EventScreenViewModel" />
     </data>
 
     <ScrollView

@@ -1,5 +1,6 @@
 package com.excelsior.codechallenge.infrastructure.utils
 
+import com.excelsior.codechallenge.base.utils.DateFormatter
 import org.joda.time.DateTime
 import org.junit.Assert
 import org.junit.Test
