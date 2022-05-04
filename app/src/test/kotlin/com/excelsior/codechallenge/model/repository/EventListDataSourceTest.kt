@@ -1,4 +1,4 @@
-package com.excelsior.codechallenge.infrastructure.model.repository
+package com.excelsior.codechallenge.model.repository
 
 import com.excelsior.codechallenge.base.BaseMockResponseTest
 import com.excelsior.codechallenge.base.eventListFilteredByPriceDesc

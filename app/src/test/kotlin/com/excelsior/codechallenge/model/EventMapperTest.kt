@@ -1,4 +1,4 @@
-package com.excelsior.codechallenge.infrastructure.model
+package com.excelsior.codechallenge.model
 
 import com.excelsior.codechallenge.base.sortedMockEventList
 import com.excelsior.codechallenge.presentation.eventScreen.ui.EventItemVO

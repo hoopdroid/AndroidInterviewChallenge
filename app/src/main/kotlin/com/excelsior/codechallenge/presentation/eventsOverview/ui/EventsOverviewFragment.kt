@@ -22,10 +22,14 @@ class EventsOverviewFragment : BaseFragment<EventsOverviewViewModel, EventsOverv
     override val viewModel: EventsOverviewViewModel by viewModel<EventsOverviewAndroidViewModel>()
     private var eventsAdapter: EventsAdapter? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchEvents()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         eventsAdapter = EventsAdapter(viewModel)
-        viewModel.fetchEvents()
 
         initUI()
         observeScreenState()

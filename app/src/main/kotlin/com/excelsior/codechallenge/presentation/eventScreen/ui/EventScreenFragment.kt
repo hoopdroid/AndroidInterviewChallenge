@@ -19,9 +19,13 @@ class EventScreenFragment : BaseFragment<EventScreenViewModel, EventScreenBindin
     private val args: EventScreenFragmentArgs by navArgs()
     private val onRetryClick = View.OnClickListener { fetchEvent() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getEvent(args.id)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getEvent(args.id)
         observeScreenState()
     }
 
