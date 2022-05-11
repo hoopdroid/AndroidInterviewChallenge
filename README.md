@@ -35,7 +35,9 @@ The structure of the project:
 ## Base
 Here is the package that includes .App class and utils package with util classes as well
 Also there is init of DI of whole project
+
 For DI I've selected Koin
+
 So, all dependencies are providing by constructor (where it's possible) with separation between interface contracts
 and implementations
 
@@ -48,22 +50,34 @@ Includes
 ## Domain
 Includes EventsInteractor with small example of business logic of extracting time range and also 
 Mapper to map the model from Data Layer to model of Presentation Layer ( EventsDto -> EventsVO )
+
 In modern applications if we want to do architecture properly we need to have different data models
-for UI layer and Data layer as well. It helps to test different layers, provides more flexible
+for UI layer and Data layer as well. 
+
+It helps to test different layers, provides more flexible
 architecture as well
 
 ## Presentation
-Implementation of MVVM with with Fragment as a View and ViewModel as an entry point to getting the data from Interactor
+Implementation of MVVM with with Fragment as a View and ViewModel as an entry point
+to getting the data from Interactor
+
 MVVM basically helps to separate the logic and use Fragment class just for a rendering.
+
 Events ViewModel also handles Filter Options state.
+
 Also I created a sealed classes to handle to different states of screens.
+
 For the navigation I used NavController with safe argument passing (navigation-safe-args)
 
 ## Note/Disclaimer
 I implemented async network requests by using Kotlin Coroutines. 
+
 In ViewModel I'm using viewModelScope.launch {} and handling the errors manually.
+
 It was done due original test task restrictions (it was forbidden to use RxJava2) but I'm more RxJava-guy.
+
 Using it a lot past 3 years, I'm familiar with Coroutines in general but I'd like to mention that I feel 
 more comfortable with Reactive Java approach. 
+
 I see that handling errors in Coroutines directly in ViewModel it's not the best case scenario, it's 
 definitely area of possible improvement
