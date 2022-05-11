@@ -1,5 +1,7 @@
 package com.excelsior.codechallenge.presentation.eventsOverview.ui
 
+import android.os.Looper
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -26,13 +28,12 @@ class EventsOverviewAndroidViewModel(private val interactor: EventsInteractor) :
         viewModelScope.launch {
             try {
                 val events = interactor.loadEvents(filterOptions)
-                eventsLiveData.postValue(
+                eventsLiveData.value =
                     EventsOverviewState.EventsLoaded(
                         events.eventTimeRange,
                         events.eventsList,
                         filterOptions
                     )
-                )
             } catch (exception: Exception) {
                 eventsLiveData.postValue(EventsOverviewState.Error)
             }
